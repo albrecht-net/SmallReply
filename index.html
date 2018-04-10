@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<form action="" method="get">
+	<form action="submit.php" method="post">
 		<div>
 			<label for="ticket">Ticket</label>
 			<input id="ticket" type="text" name="ticket">
@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<label for="email">Email</label>
-			<input id="email" type="text" name="email">
+			<input id="email" type="email" name="email">
 		</div>
 		<div>
 			<label for="title">Titel</label>
@@ -35,11 +35,11 @@
 		</div>
 		<div>
 			<p>Gültigkeitsdauer eingeben:</p>
-			<label for="day">Tage</label>
-			<input type="number" id="day" name="day" min="0"><br>
+			<label for="dateExpire">Tage</label>
+			<input id="dateExpire" type="number" name="dateExpire" min="-10"><br>
 		</div>
 		<div>
-			<input type="submit" value="Absenden">
+			<input type="submit" value="Absenden" name="submit">
 		</div>
 	</form>
 
