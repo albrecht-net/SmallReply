@@ -2,6 +2,8 @@
 	// Überprüfen ob Submit geklickt wurde
 	if (isset($_POST['submit'])) {
 
+		session_start();
+
 		// Mit der Datenbank verbinden
 		include_once 'includes/dbh.php';
 
