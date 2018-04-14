@@ -1,3 +1,16 @@
+<?php
+	// Überprüfen ob ein ticket gesetzt wurde
+	if (isset($_GET['ticket'])) {
+		session_start();
+		$_SESSION['ticket'] = $_GET['ticket'];
+	// Überprüfen ob ein ticket bereits vorhanden ist
+	} elseif (session_status == PHP_SESSION_ACTIVE) {
+		
+	} else {
+		echo date('H:i:s') . ' Kein Ticket gefunden';
+		exit();
+	}
+?>
 <!DOCTYPE html>
 <html lang="de">
 <head>
