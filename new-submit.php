@@ -5,7 +5,7 @@
 		session_start();
 
 		// Mit der Datenbank verbinden
-		include_once 'includes/dbh.php';
+		include_once '../../smallreply/includes/dbh.php';
 
 		// Variablen zuweisen
 		$dbTable = 'smallreply';
@@ -19,7 +19,7 @@
 			'title' => $_POST['title'],
 			'description' => $_POST['description']
         );
-        $dataDate = array(
+        $dataFunctions = array(
             'dateCreate' => 'NOW()',
             'dateExpire' => $_POST['dateExpire']
         );
@@ -41,7 +41,7 @@
 		}
 
 		// Ablaufdatum überprüfen, darf nicht kleiner als 0 sein
-		if ($dataDate['dateExpire'] <= 0) {
+		if ($dataFunctions['dateExpire'] <= 0) {
 			echo date('H:i:s') . ' Das Ablaufdatum muss grösser gleich 0 sein';
 			// exit();
 		}
@@ -54,16 +54,16 @@
         }
 
 		// Ablaufdatum generieren
-		if ($dataDate['dateExpire'] == 0) {
-			$dataDate['dateExpire'] = "''";
+		if ($dataFunctions['dateExpire'] == 0) {
+			$dataFunctions['dateExpire'] = "''";
 		} else {
-			$tempDate = $dataDate['dateExpire'];
-			$dataDate['dateExpire'] = 'CURDATE() + INTERVAL ' . $tempDate . ' DAY';
+			$tempDate = $dataFunctions['dateExpire'];
+			$dataFunctions['dateExpire'] = 'CURDATE() + INTERVAL ' . $tempDate . ' DAY';
 		}
 
 		// SQL-Query bereitstellen
-        $columns = "`" . implode("`, `", array_keys($dataInput)) . "`, `" . implode("`, `", array_keys($dataDate)) . "`";
-        $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataDate);
+        $columns = "`" . implode("`, `", array_keys($dataInput)) . "`, `" . implode("`, `", array_keys($dataFunctions)) . "`";
+        $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctions);
 
         $sqlquery = 'INSERT INTO `' . $dbTable . '` (' . $columns . ') VALUES (' . $values . ')';
 
@@ -74,7 +74,8 @@
             echo date('H:i:s') . ' MySQL Error: ' . $query . mysqli_error($link);
             exit();
         } else {
-            echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
+			echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
+			exit(header('Location: includes/new-confirmed.php'));
         }
 
 	} else {
