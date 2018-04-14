@@ -1,13 +1,16 @@
 <?php
+	session_start();
 	// Überprüfen ob ein ticket gesetzt wurde
 	if (isset($_GET['ticket'])) {
-		session_start();
 		$_SESSION['ticket'] = $_GET['ticket'];
+		echo date('H:i:s') . ' Ein neues Ticket wurde erkannt: ' . $_SESSION['ticket'];
 	// Überprüfen ob ein ticket bereits vorhanden ist
-	} elseif (session_status == PHP_SESSION_ACTIVE) {
-		
+	} elseif (isset($_SESSION['ticket'])) {
+		echo date('H:i:s') . ' Session mit folgendem Ticket gefunden: ' . $_SESSION['ticket'];
 	} else {
 		echo date('H:i:s') . ' Kein Ticket gefunden';
+		session_unset();
+		session_destroy();
 		exit();
 	}
 ?>
@@ -21,7 +24,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<form action="" method="post">
+	<form action="userRateSubmit" method="post">
 		<div>
 			<label for="rateValue">Schlecht - Gut</label>
 			<input id="rateValue" type="range" name="rateValue" min="0" max="4" step="1">
