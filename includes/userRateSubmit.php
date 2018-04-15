@@ -5,7 +5,7 @@
 		session_start();
 
 		// Mit der Datenbank verbinden
-		include_once '../../../../smallreply/includes/dbh.php';
+		include_once '../../../smallreply/includes/dbh.php';
 
 		// Variablen zuweisen
 		$dbTable = 'smallreply';
