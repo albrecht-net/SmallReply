@@ -1,18 +1,5 @@
 <?php
 	session_start();
-	// Überprüfen ob ein ticket gesetzt wurde
-	if (isset($_GET['ticket'])) {
-		$_SESSION['ticket'] = $_GET['ticket'];
-		echo date('H:i:s') . ' Ein neues Ticket wurde erkannt: ' . $_SESSION['ticket'];
-	// Überprüfen ob ein ticket bereits vorhanden ist
-	} elseif (isset($_SESSION['ticket'])) {
-		echo date('H:i:s') . ' Session mit folgendem Ticket gefunden: ' . $_SESSION['ticket'];
-	} else {
-		echo date('H:i:s') . ' Kein Ticket gefunden';
-		session_unset();
-		session_destroy();
-		exit();
-	}
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -24,7 +11,22 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<form action="userRateSubmit" method="post">
+	<?php
+		// Überprüfen ob ein ticket gesetzt wurde
+		if (isset($_GET['ticket'])) {
+			$_SESSION['ticket'] = $_GET['ticket'];
+			echo date('H:i:s') . ' Ein neues Ticket wurde erkannt: ' . $_SESSION['ticket'];
+		// Überprüfen ob ein ticket bereits vorhanden ist
+		} elseif (isset($_SESSION['ticket'])) {
+			echo date('H:i:s') . ' Session mit folgendem Ticket gefunden: ' . $_SESSION['ticket'];
+		} else {
+			echo date('H:i:s') . ' Kein Ticket gefunden';
+			session_unset();
+			session_destroy();
+			exit();
+		}
+	?>
+	<form action="userRateSubmit.php" method="post">
 		<div>
 			<label for="rateValue">Schlecht - Gut</label>
 			<input id="rateValue" type="range" name="rateValue" min="0" max="4" step="1">
