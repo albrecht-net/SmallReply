@@ -12,18 +12,23 @@
 			<div>
 				<label for="username">Benutzername</label>
 				<input id="username" type="text" name="username">
+			</div>
 			<div>
 				<label for="firstname">Vorname</label>
 				<input id="firstname" type="text" name="firstname">	
+			</div>
 			<div>
 				<label for="lastname">Nachname</label>
-				<input id="lastname" type="text" name="lastname">	
+				<input id="lastname" type="text" name="lastname">
+			</div>
 			<div>
 				<label for="email">Email</label>
 				<input id="email" type="email" name="email">
+			</div>
 			<div>
 				<label for="password">Passwort</label>
 				<input id="password" type="password" name="password">
+			</div>
 			<div>
 				<input type="submit" value="Absenden" name="submit">
 			</div>
