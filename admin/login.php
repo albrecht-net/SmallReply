@@ -1,3 +1,12 @@
+<?php
+// Überprüfen ob Submit geklickt wurde
+if (isset($_POST['submit'])) {
+	if (!include 'includes/login.inc.php') {
+		echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
+	}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -8,7 +17,7 @@
 	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-	<form action="#" method="post">
+	<form action="login.php" method="POST">
 			<div>
 				<label for="username">Benutzername</label>
 				<input id="username" type="text" name="username">
@@ -17,7 +26,7 @@
 				<label for="password">Passwort</label>
 				<input id="password" type="password" name="password">
 			</div>
-            <div>
+			<div>
 				<input type="submit" value="Absenden" name="submit">
 			</div>
 	</form>
