@@ -38,6 +38,11 @@ if ($dataInput['password'] !== $dataInput['passwordRepeat']) {
 } else {
 	unset($dataInput['passwordRepeat']);
 }
+// Passwortfilter
+if (strlen($dataInput['password']) < 8) {
+	echo date('H:i:s') . ' Das Passwort muss mindestens 8 Zeichen enthalten';
+	// exit();
+}
 
 //  Gross- / Kleinschreibung
 // Vorname
