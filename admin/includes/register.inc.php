@@ -1,6 +1,6 @@
 <?php
 // Mit der Datenbank verbinden
-include_once '../../smallreply/includes/dbh.php';
+include_once '../../../dbh.php';
 
 // Variablen zuweisen
 $dbTable = 'users';
@@ -11,7 +11,8 @@ $dataInput = array(
 	'firstname' => $_POST['firstname'],
 	'lastname' => $_POST['lastname'],
 	'email' => $_POST['email'],
-	'password' => $_POST['password']
+	'password' => $_POST['password'],
+	'passwordRepeat' => $_POST['passwordRepeat']
 );
 $dataFunctions = array(
 	'userRegistered' => 'NOW()'
@@ -27,8 +28,15 @@ if (!mysqli_num_rows($result) == 0) {
 }
 // Email-Adresse überprüfen
 if (!filter_var($dataInput['email'], FILTER_VALIDATE_EMAIL)) {
-	echo date('H:i:s') . ' Die Email-Adresse ' . $dataInput['email'] . ' ist nicht gültig';
+	echo date('H:i:s') . ' Die Email-Adresse ' . $dataInput['email'] . ' ist nicht gültig.';
 	// exit();
+}
+// Passwortübereinstimmung überprüfen
+if ($dataInput['password'] !== $dataInput['passwordRepeat']) {
+	echo date('H:i:s') . ' Die eingegebenen Passwörter stimmen nicht überein.';
+	// exit();
+} else {
+	unset($dataInput['passwordRepeat']);
 }
 
 //  Gross- / Kleinschreibung

@@ -37,6 +37,11 @@ if (isset($_POST['submit'])) {
 			<div>
 				<label for="password">Passwort</label>
 				<input id="password" type="password" name="password">
+            </div>
+            </div>
+			<div>
+				<label for="passwordRepeat">Passwort wiederholen</label>
+				<input id="passwordRepeat" type="password" name="passwordRepeat">
 			</div>
 			<div>
 				<input type="submit" value="Absenden" name="submit">
