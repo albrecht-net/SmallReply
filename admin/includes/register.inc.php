@@ -55,6 +55,9 @@ $dataInput['email'] = strtolower($dataInput['email']);
 // Passwort Hash
 $dataInput['password'] = password_hash($dataInput['password'], PASSWORD_DEFAULT);
 
+// Benutzer-ID generieren
+$dataInput['uid'] = uniqid();
+
 // SQL-Query bereitstellen
 $columns = "`" . implode("`, `", array_keys($dataInput)) . "`, `" . implode("`, `", array_keys($dataFunctions)) . "`";
 $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctions);
