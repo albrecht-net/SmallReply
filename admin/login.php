@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Überprüfen ob Submit geklickt wurde
 if (isset($_POST['submit']) && !empty($_POST['username'])) {
 	if (!include 'includes/login.inc.php') {
