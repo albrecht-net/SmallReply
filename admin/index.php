@@ -1,3 +1,11 @@
+<?php
+// Prüfen ob Benutzer angemeldet
+if (!include_once 'includes/loginSessionCheck.inc.php') {
+	echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
+	exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
