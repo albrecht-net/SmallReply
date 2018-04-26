@@ -9,7 +9,7 @@ $dataSession = array(
 
 // Benutzer Session zurücksetzten
 function unsetSession() {
-	unset($_SESSION['admin']);
+	include_once 'logout.php';
 	header("Location: login.php");
 }
 
