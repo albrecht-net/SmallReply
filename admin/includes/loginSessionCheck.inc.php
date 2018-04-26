@@ -9,8 +9,7 @@ $dataSession = array(
 
 // Benutzer Session zurücksetzten
 function unsetSession() {
-	unset($_SESSION['admin']['uid']);
-	unset($_SESSION['admin']['username']);
+	unset($_SESSION['admin']);
 	header("Location: login.php");
 }
 
@@ -30,7 +29,7 @@ if (empty($dataSession['uid']) || empty($dataSession['username'])) {
 	$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `uid` = '" . $dataSession['uid'] . "' AND `username` = '" . $dataSession['username'] . "'";
 	$query = mysqli_query($link, $sqlquery);
 
-	// Prüft ob Session mit Datenbank übereinstimmt (Wenn 1 Resultat: Benutzer vorhanden und korrekt abgeglichen)
+	// Prüft ob Session mit Datenbank übereinstimmt (Wenn 1 Resultat: Benutzer vorhanden und korrekt abgeglichen, Session wird nicht zurückgesetzt)
 	if (mysqli_num_rows($query) != 1) {
 		echo date('H:i:s') . ' Benutzer abfragen fehlgeschlagen';
 		unsetSession();
