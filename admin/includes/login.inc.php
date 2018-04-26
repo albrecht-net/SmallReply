@@ -27,8 +27,8 @@ if (!password_verify($dataInput['password'], $dataDb['password'])) {
 	echo date('H:i:s') . ' Das Passwort ist ungültig';
 	// exit();
 } else {
-	$_SESSION['uid'] = $dataDb['uid'];
-	$_SESSION['username'] = $dataDb['username'];
+	$_SESSION['admin']['uid'] = $dataDb['uid'];
+	$_SESSION['admin']['username'] = $dataDb['username'];
 	echo date('H:i:s') . ' Erfolgreich angemeldet!';
 }
 ?>

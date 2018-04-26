@@ -3,14 +3,14 @@ session_start();
 
 // Array Sessiondata
 $dataSession = array(
-	'uid' => $_SESSION['uid'],
-	'username' => $_SESSION['username']
+	'uid' => $_SESSION['admin']['uid'],
+	'username' => $_SESSION['admin']['username']
 );
 
 // Benutzer Session zurücksetzten
 function unsetSession() {
-	unset($_SESSION['uid']);
-	unset($_SESSION['username']);
+	unset($_SESSION['admin']['uid']);
+	unset($_SESSION['admin']['username']);
 	header("Location: login.php");
 }
 
