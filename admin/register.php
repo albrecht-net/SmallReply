@@ -1,4 +1,9 @@
 <?php
+// Prüfen ob Benutzer angemeldet
+if (!include_once 'includes/loginSessionCheck.inc.php') {
+	echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
+	exit();
+}
 // Überprüfen ob Submit geklickt wurde
 if (isset($_POST['submit'])) {
 	if (!include 'includes/register.inc.php') {
@@ -32,13 +37,13 @@ if (isset($_POST['submit'])) {
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="index.html">Home</a>
+				<li class="nav-item">
+					<a class="nav-link" href="index.php">Home</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="records.php">Einträge</a>
 				</li>
-				<li class="nav-item">
+				<li class="nav-item active">
 					<a class="nav-link" href="register.php">Neuer Benutzer<span class="sr-only">(current)</span></a>
 				</li>
 			</ul>
