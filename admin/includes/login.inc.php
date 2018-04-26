@@ -12,17 +12,17 @@ $dataInput = array(
 );
 
 // SQL-Query bereitstellen
-$sqlresult = "SELECT * FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
-$result = mysqli_query($link, $sqlresult);
+$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
+$query = mysqli_query($link, $sqlquery);
 
 // Benutzername abfragen
-if (mysqli_num_rows($result) == 0) {
+if (mysqli_num_rows($query) == 0) {
 	echo date('H:i:s') . ' Der Benutzername: ' . $dataInput['username'] . ' ist ungültig.';
 	// exit();
 }
 
 // Passwort abfragen
-$dataDb = mysqli_fetch_assoc($result);
+$dataDb = mysqli_fetch_assoc($query);
 if (!password_verify($dataInput['password'], $dataDb['password'])) {
 	echo date('H:i:s') . ' Das Passwort ist ungültig';
 	// exit();

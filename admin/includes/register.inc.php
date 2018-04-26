@@ -20,9 +20,9 @@ $dataFunctions = array(
 
 // Eingabe-Regeln
 // Benutzername überprüfen, Benutzername muss einmalig sein
-$sqlresult = "SELECT * FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
-$result = mysqli_query($link, $sqlresult);
-if (!mysqli_num_rows($result) == 0) {
+$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
+$query = mysqli_query($link, $sqlquery);
+if (!mysqli_num_rows($query) == 0) {
 	echo date('H:i:s') . ' Der Benutzername: ' . $dataInput['ticket'] . ' ist bereits vergeben.';
 	// exit();
 }
