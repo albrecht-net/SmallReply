@@ -29,6 +29,6 @@ if (!password_verify($dataInput['password'], $dataDb['password'])) {
 } else {
 	$_SESSION['admin']['uid'] = $dataDb['uid'];
 	$_SESSION['admin']['username'] = $dataDb['username'];
-	echo date('H:i:s') . ' Erfolgreich angemeldet!';
+	header("Location: index.php");
 }
 ?>
