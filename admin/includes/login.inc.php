@@ -25,8 +25,8 @@ $dataDb = mysqli_fetch_assoc($query);
 if (!password_verify($dataInput['password'], $dataDb['password'])) {
 	echo date('H:i:s') . ' Das Passwort ist ungültig';
 } else {
-	$_SESSION['admin']['uid'] = $dataDb['uid'];
-	$_SESSION['admin']['username'] = $dataDb['username'];
+	$_SESSION['uid'] = $dataDb['uid'];
+	$_SESSION['username'] = $dataDb['username'];
     header("Location: index.php");
     exit();
 }

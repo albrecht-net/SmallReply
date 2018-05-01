@@ -3,8 +3,8 @@ session_start();
 
 // Array Sessiondata
 $dataSession = array(
-	'uid' => $_SESSION['admin']['uid'],
-	'username' => $_SESSION['admin']['username']
+	'uid' => $_SESSION['uid'],
+	'username' => $_SESSION['username']
 );
 
 // Benutzer Session zurücksetzten
