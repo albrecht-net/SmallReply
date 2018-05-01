@@ -1,5 +1,14 @@
 <?php
-	session_start();
+session_start();
+
+// Überprüfen ob ein Administrator angemeldet ist
+if (isset($_SESSION['uid']) && isset($_SESSION['username'])) {
+	echo date('H:i:s') . ' Administrator ist angemeldet, Umfrageforumal kann nicht aufgerufen werden.';
+	echo '<a href="admin/index.php">Dashboard</a>';
+	echo '<a href="admin/logout.php">Logout</a>';
+	exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="de">
@@ -26,6 +35,7 @@
 			exit();
 		}
 	?>
+	
 	<form action="includes/userRateSubmit.php" method="post">
 		<div>
 			<label for="rateValue">Schlecht - Gut</label>
