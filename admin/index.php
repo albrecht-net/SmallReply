@@ -4,6 +4,12 @@ if (!include_once 'includes/loginSessionCheck.inc.php') {
 	echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
 	exit();
 }
+// Überprüfen ob Submit geklickt wurde
+if (isset($_POST['submit'])) {
+	if (!include 'includes/newReply.inc.php') {
+		echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
+	}
+}
 ?>
 
 <!DOCTYPE html>
@@ -51,7 +57,7 @@ if (!include_once 'includes/loginSessionCheck.inc.php') {
 		</div>
 	</nav>
 
-	<form action="includes/new-submit.php" method="post">
+	<form action="index.php" method="post">
 		<div>
 			<label for="ticket">Ticket</label>
 			<input id="ticket" type="text" name="ticket">
