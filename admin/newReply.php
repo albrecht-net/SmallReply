@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Dashboard</title>
+	<title>Umfrage erfassen</title>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -37,11 +37,11 @@ if (isset($_POST['submit'])) {
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active">
-					<a class="nav-link" href="index.php">Home<span class="sr-only">(current)</span></a>
+				<li class="nav-item">
+					<a class="nav-link" href="index.php">Home</a>
 				</li>
-                <li class="nav-item">
-                    <a class="nav-link" href="newReply.php">Neuer Eintrag</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="newReply.php">Neuer Eintrag<span class="sr-only">(current)</span></a>
                 </li>
 				<li class="nav-item">
 					<a class="nav-link" href="records.php">Einträge</a>
@@ -59,5 +59,41 @@ if (isset($_POST['submit'])) {
 			</ul>
 		</div>
 	</nav>
+
+	<form action="index.php" method="post">
+		<div>
+			<label for="ticket">Ticket</label>
+			<input id="ticket" type="text" name="ticket">
+		</div>
+		<div>
+			<label for="firstname">Vorname</label>
+			<input id="firstname" type="text" name="firstname">	
+		</div>
+		<div>
+			<label for="lastname">Nachname</label>
+			<input id="lastname" type="text" name="lastname">	
+		</div>
+		<div>
+			<label for="email">Email</label>
+			<input id="email" type="email" name="email">
+		</div>
+		<div>
+			<label for="title">Titel</label>
+			<input id="title" type="text" name="title">
+		</div>
+		<div>
+			<label for="description">Beschreibung</label>
+			<textarea id="description" name="description" rows="4"></textarea>
+		</div>
+		<div>
+			<p>Gültigkeitsdauer eingeben:</p>
+			<label for="dateExpire">Tage</label>
+			<input id="dateExpire" type="number" name="dateExpire" min="0"><br>
+		</div>
+		<div>
+			<input type="submit" value="Absenden" name="submit">
+		</div>
+	</form>
+
 </body>
 </html>

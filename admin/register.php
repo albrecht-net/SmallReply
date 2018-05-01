@@ -40,6 +40,9 @@ if (isset($_POST['submit'])) {
 				<li class="nav-item">
 					<a class="nav-link" href="index.php">Home</a>
 				</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="newReply.php">Neuer Eintrag</a>
+                </li>
 				<li class="nav-item">
 					<a class="nav-link" href="records.php">Einträge</a>
 				</li>
