@@ -8,8 +8,14 @@ if (isset($_SESSION['uid']) && isset($_SESSION['username'])) {
 	echo '<a href="admin/logout.php">Logout</a>';
 	exit();
 }
-
+// Überprüfen ob Submit geklickt wurde
+if (isset($_POST['submit'])) {
+	if (!include 'includes/userRate.inc.php') {
+		echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
+	}
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -36,7 +42,7 @@ if (isset($_SESSION['uid']) && isset($_SESSION['username'])) {
 		}
 	?>
 	
-	<form action="includes/userRateSubmit.php" method="post">
+	<form action="index.php" method="post">
 		<div>
 			<label for="rateValue">Schlecht - Gut</label>
 			<input id="rateValue" type="range" name="rateValue" min="0" max="4" step="1">
@@ -46,7 +52,7 @@ if (isset($_SESSION['uid']) && isset($_SESSION['username'])) {
 			<textarea id="rateComment" name="rateComment" rows="10"></textarea>
 		</div>
 		<div>
-			<input type="submit" value="Absenden" name="submitRate">
+			<input type="submit" value="Absenden" name="submit">
 		</div>
 	</form>
 </body>

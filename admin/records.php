@@ -34,6 +34,9 @@ if (!include_once 'includes/loginSessionCheck.inc.php') {
 				<li class="nav-item">
 					<a class="nav-link" href="index.php">Home</a>
 				</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="newReply.php">Neuer Eintrag</a>
+                </li>
 				<li class="nav-item active">
 					<a class="nav-link" href="records.php">Einträge<span class="sr-only">(current)</span></a>
 				</li>
