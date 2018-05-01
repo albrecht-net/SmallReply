@@ -1,3 +1,5 @@
 <?php
-unset($_SESSION['admin']);
+session_start();
+session_destroy();
+header("Location: login.php?loggedout=true")
 ?>
