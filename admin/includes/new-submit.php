@@ -26,10 +26,10 @@
 
 		// Eingabe-Regeln
 		// Ticket überprüfen, Ticket muss einmalig sein
-		$sqlresult = "SELECT * FROM `" . $dbTable . "` WHERE `ticket` = '" . $dataInput['ticket'] . "'";
-		$result = mysqli_query($link, $sqlresult);
+		$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `ticket` = '" . $dataInput['ticket'] . "'";
+		$query = mysqli_query($link, $sqlquery);
 
-		if (!mysqli_num_rows($result) == 0) {
+		if (!mysqli_num_rows($query) == 0) {
 			echo date('H:i:s') . ' Es ist bereits ein Eintrag mit der Ticket-Nummer: ' . $dataInput['ticket'] . ' vorhanden.';
 			// exit();
 		}
