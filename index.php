@@ -1,30 +1,17 @@
 <?php
-session_start();
-
-// Überprüfen ob ein Administrator angemeldet ist
-if (isset($_SESSION['uid']) && isset($_SESSION['username'])) {
-	echo date('H:i:s') . ' Administrator ist angemeldet, Umfrageformular kann nicht aufgerufen werden.';
-	echo '<a href="admin/index.php">Dashboard</a>';
-	echo '<a href="admin/logout.php">Logout</a>';
-	exit();
-}
 // Überprüfen ob Submit geklickt wurde
 if (isset($_POST['submit'])) {
 	if (!include 'includes/userRate.inc.php') {
 		echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
 	}
 }
-// Überprüfen ob ein ticket gesetzt wurde
+// Überprüfen ob ein Ticket gesetzt wurde
 if (isset($_GET['ticket'])) {
-    $_SESSION['ticket'] = $_GET['ticket'];
-    echo date('H:i:s') . ' Ein neues Ticket wurde erkannt: ' . $_SESSION['ticket'];
-// Überprüfen ob ein ticket bereits vorhanden ist
-} elseif (isset($_SESSION['ticket'])) {
-    echo date('H:i:s') . ' Session mit folgendem Ticket gefunden: ' . $_SESSION['ticket'];
+	if (!include 'includes/ticketValidation.inc.php') {
+		echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
+	}
 } else {
     echo date('H:i:s') . ' Kein Ticket gefunden';
-    session_unset();
-    session_destroy();
     exit();
 }
 ?>
@@ -39,7 +26,7 @@ if (isset($_GET['ticket'])) {
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<form action="index.php" method="post">
+	<form action="<?php echo 'index.php?ticket=' . $_GET['ticket'] ?>" method="post">
 		<div>
 			<label for="rateValue">Schlecht - Gut</label>
 			<input id="rateValue" type="range" name="rateValue" min="0" max="4" step="1">
