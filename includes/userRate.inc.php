@@ -1,10 +1,9 @@
 <?php
 // Mit der Datenbank verbinden
-include_once '../../smallreply/includes/dbh.php';
+include_once '../../dbh.php';
 
 // Variablen zuweisen
 $dbTable = 'smallreply';
-$ticket = $_SESSION['ticket'];
 
 // Array Eingabe
 $dataInput = array(
@@ -16,15 +15,8 @@ $dataFunction = array(
     'dateCompleted' => 'NOW()'
 );
 
-// Eingabe-Regeln
-// Ticket überprüfen
-$sqlresult = "SELECT * FROM `" . $dbTable . "` WHERE `ticket` = '" . $ticket . "'";
-$result = mysqli_query($link, $sqlresult);
-
-if (!mysqli_num_rows($result) == 1) {
-    echo date('H:i:s') . ' Es ist kein Eintrag mit der Ticket-Nummer: ' . $ticket . ' vorhanden.';
-    // exit();
-}
+// Ticket validieren
+include_once 'includes/ticketValidation.inc.php';
 
 // SQL-Query bereitstellen
 $set = [];
@@ -36,7 +28,7 @@ foreach ($dataFunction as $column => $value) {
     $set[] = "`" . $column . "` = " . $value;
 }
 
-$sqlquery = "UPDATE `" . $dbTable . "` SET " . implode(", ", $set) . " WHERE `" . $dbTable . "`.`ticket` = '" . $ticket . "'";
+$sqlquery = "UPDATE `" . $dbTable . "` SET " . implode(", ", $set) . " WHERE `" . $dbTable . "`.`ticket` = '" . $dataValidation['ticket'] . "'";
 
 // SQL-Query ausführen und überprüfen
 if (!mysqli_query($link, $sqlquery)) {
@@ -44,7 +36,6 @@ if (!mysqli_query($link, $sqlquery)) {
     exit();
 } else {
     echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
-    session_destroy();
     exit();
 }
 ?>
