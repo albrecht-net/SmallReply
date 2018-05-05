@@ -26,6 +26,15 @@ if (isset($_GET['ticket'])) {
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <h1>
+        <?php echo $dataDb['title'] ?>
+    </h1>
+    <br>
+    <p>
+        <?php echo $dataDb['description'] ?>
+    </p>
+    <br>
+    
 	<form action="<?php echo 'index.php?ticket=' . $dataInput['ticket'] ?>" method="post">
 		<div>
 			<label for="rateValue">Schlecht - Gut</label>
