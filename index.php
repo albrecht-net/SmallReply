@@ -34,8 +34,8 @@ if (isset($_GET['ticket'])) {
         <?php echo $dataDb['description'] ?>
     </p>
     <br>
-    
-	<form action="<?php echo 'index.php?ticket=' . $dataInput['ticket'] ?>" method="post">
+
+	<form action="<?php echo 'index.php?ticket=' . $dataValidation['ticket'] ?>" method="post">
 		<div>
 			<label for="rateValue">Schlecht - Gut</label>
 			<input id="rateValue" type="range" name="rateValue" min="0" max="4" step="1">
