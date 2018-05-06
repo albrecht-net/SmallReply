@@ -21,8 +21,7 @@ $dataFunctions = array(
 // Eingabe-Regeln
 // Benutzername überprüfen, Benutzername muss einmalig sein
 $sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
-$query = mysqli_query($link, $sqlquery);
-if (!mysqli_num_rows($query) == 0) {
+if (!mysqli_num_rows(mysqli_query($link, $sqlquery)) == 0) {
 	echo date('H:i:s') . ' Der Benutzername: ' . $dataInput['ticket'] . ' ist bereits vergeben.';
 	// exit();
 }
@@ -61,15 +60,15 @@ $dataInput['uid'] = uniqid();
 // SQL-Query bereitstellen
 $columns = "`" . implode("`, `", array_keys($dataInput)) . "`, `" . implode("`, `", array_keys($dataFunctions)) . "`";
 $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctions);
-
-$sqlquery = 'INSERT INTO `' . $dbTable . '` (' . $columns . ') VALUES (' . $values . ')';
+$sqlquery = "INSERT INTO `" . $dbTable . "` (" . $columns . ") VALUES (" . $values . ")";
 
 // SQL-Query ausführen und überprüfen
 if (!mysqli_query($link, $sqlquery)) {
-	echo date('H:i:s') . ' MySQL Error: ' . $query . mysqli_error($link);
+	echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($link);
 	exit();
 } else {
-	echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
+    echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
+    header("Location: index.php");
 	exit();
 }
 ?>

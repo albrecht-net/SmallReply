@@ -32,7 +32,7 @@ $sqlquery = "UPDATE `" . $dbTable . "` SET " . implode(", ", $set) . " WHERE `" 
 
 // SQL-Query ausführen und überprüfen
 if (!mysqli_query($link, $sqlquery)) {
-    echo date('H:i:s') . ' MySQL Error: ' . $query . mysqli_error($link);
+    echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($link);
     exit();
 } else {
     echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
