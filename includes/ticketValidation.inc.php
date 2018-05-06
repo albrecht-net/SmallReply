@@ -7,7 +7,7 @@ $dbTable = 'smallreply';
 
 // Array Eingabe
 $dataValidation = array(
-	'ticket' => mysqli_escape_real_string($link, $_GET['ticket'])
+	'ticket' => mysqli_real_escape_string($link, $_GET['ticket'])
 );
 
 // SQL-Query bereitstellen (Für Ticket Validierung und Eingabeformular)
