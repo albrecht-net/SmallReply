@@ -7,10 +7,10 @@ $dbTable = 'users';
 
 // Array Eingabe
 $dataInput = array(
-	'username' => $_POST['username'],
-	'firstname' => $_POST['firstname'],
-	'lastname' => $_POST['lastname'],
-	'email' => $_POST['email'],
+	'username' => mysqli_real_escape_string($link, $_POST['username']),
+	'firstname' => mysqli_real_escape_string($link, $_POST['firstname']),
+	'lastname' => mysqli_real_escape_string($link, $_POST['lastname']),
+	'email' => mysqli_real_escape_string($link, $_POST['email']),
 	'password' => $_POST['password'],
 	'passwordRepeat' => $_POST['passwordRepeat']
 );

@@ -7,7 +7,7 @@ $dbTable = 'users';
 
 // Array Eingabe
 $dataInput = array(
-	'username' => $_POST['username'],
+	'username' => mysqli_real_escape_string($link, $_POST['username']),
 	'password' => $_POST['password']
 );
 

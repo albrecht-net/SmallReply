@@ -7,8 +7,8 @@ $dbTable = 'smallreply';
 
 // Array Eingabe
 $dataInput = array(
-    'rateValue' => $_POST['rateValue'],
-    'rateComment' => $_POST['rateComment'],
+    'rateValue' => filter_var($_POST['rateValue'], FILTER_SANITIZE_NUMBER_INT),
+    'rateComment' => mysqli_real_escape_string($link, $_POST['rateComment']),
     'completed' => 1
 );
 $dataFunction = array(
