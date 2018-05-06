@@ -1,13 +1,16 @@
 <?php
 session_start();
 
+// Mit der Datenbank verbinden
+include_once '../../../dbh.php';
+
 // Variablen zuweisen
 $dbTable = 'users';
 
 // Array Sessiondata
 $dataSession = array(
-	'uid' => $_SESSION['uid'],
-	'username' => $_SESSION['username']
+	'uid' => mysqli_real_escape_string($link, $_SESSION['uid']),
+	'username' => mysqli_real_escape_string($link, $_SESSION['username'])
 );
 
 // Benutzer Session zurücksetzten
@@ -22,8 +25,6 @@ if (empty($dataSession['uid']) || empty($dataSession['username'])) {
 	unsetSession();
 	exit();
 } elseif (isset($dataSession['uid']) && isset($dataSession['username'])) {
-	// Mit der Datenbank verbinden
-	include_once '../../../dbh.php';
 
 	// SQL-Query bereitstellen
 	$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `uid` = '" . $dataSession['uid'] . "' AND `username` = '" . $dataSession['username'] . "'";
