@@ -42,9 +42,10 @@ if ($dataFunctions['dateExpire'] <= 0) {
 }
 
 // Ticket generieren wenn nicht definiert
-if (empty($dataInput['ticket'])) {
-	$dataInput['ticket'] = uniqid('', false);
+if (!empty($dataInput['ticket'])) {
+    $dataInput['ticket'] .= '_';
 }
+	$dataInput['ticket'] .= md5(uniqid('', false));
 
 // Ablaufdatum generieren
 if ($dataFunctions['dateExpire'] == 0) {
