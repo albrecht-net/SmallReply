@@ -7,16 +7,16 @@ $dbTable = 'smallreply';
 
 // Array Eingabe
 $dataInput = array(
-	'ticket' => $_POST['ticket'],
-	'firstname' => $_POST['firstname'],
-	'lastname' => $_POST['lastname'],
-	'email' => $_POST['email'],
-	'title' => $_POST['title'],
-	'description' => $_POST['description']
+	'ticket' => mysqli_real_escape_string($link, $_POST['ticket']),
+	'firstname' => mysqli_real_escape_string($link, $_POST['firstname']),
+	'lastname' => mysqli_real_escape_string($link, $_POST['lastname']),
+	'email' => mysqli_real_escape_string($link, $_POST['email']),
+	'title' => mysqli_real_escape_string($link, $_POST['title']),
+	'description' => mysqli_real_escape_string($link, $_POST['description'])
 );
 $dataFunctions = array(
 	'dateCreate' => 'NOW()',
-	'dateExpire' => $_POST['dateExpire']
+	'dateExpire' => filter_var($_POST['dateExpire'], FILTER_SANITIZE_NUMBER_INT)
 );
 
 // Eingabe-Regeln
