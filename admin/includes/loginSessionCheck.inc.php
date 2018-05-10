@@ -4,6 +4,9 @@ session_start();
 // Mit der Datenbank verbinden
 include_once '../../../dbh.php';
 
+// Variablen zuweisen
+$dbTable = 'users';
+
 // Array Sessiondata
 $dataSession = array(
 	'uid' => mysqli_real_escape_string($link, $_SESSION['uid']),
@@ -23,15 +26,11 @@ if (empty($dataSession['uid']) || empty($dataSession['username'])) {
 	exit();
 } elseif (isset($dataSession['uid']) && isset($dataSession['username'])) {
 
-	// Variablen zuweisen
-	$dbTable = 'users';
-
 	// SQL-Query bereitstellen
 	$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `uid` = '" . $dataSession['uid'] . "' AND `username` = '" . $dataSession['username'] . "'";
-	$query = mysqli_query($link, $sqlquery);
 
 	// Prüft ob Session mit Datenbank übereinstimmt (Wenn 1 Resultat: Benutzer vorhanden und korrekt abgeglichen, Session wird nicht zurückgesetzt)
-	if (mysqli_num_rows($query) != 1) {
+	if (mysqli_num_rows(mysqli_query($link, $sqlquery)) != 1) {
 		echo date('H:i:s') . ' Benutzer abfragen fehlgeschlagen';
 		unsetSession();
 		exit();

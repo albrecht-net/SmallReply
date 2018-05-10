@@ -22,9 +22,8 @@ $dataFunctions = array(
 // Eingabe-Regeln
 // Ticket überprüfen, Ticket muss einmalig sein
 $sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `ticket` = '" . $dataInput['ticket'] . "'";
-$query = mysqli_query($link, $sqlquery);
 
-if (!mysqli_num_rows($query) == 0) {
+if (!mysqli_num_rows(mysqli_query($link, $sqlquery)) == 0) {
 	echo date('H:i:s') . ' Es ist bereits ein Eintrag mit der Ticket-Nummer: ' . $dataInput['ticket'] . ' vorhanden.';
 	// exit();
 }
@@ -57,17 +56,15 @@ if ($dataFunctions['dateExpire'] == 0) {
 // SQL-Query bereitstellen
 $columns = "`" . implode("`, `", array_keys($dataInput)) . "`, `" . implode("`, `", array_keys($dataFunctions)) . "`";
 $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctions);
-
-$sqlquery = 'INSERT INTO `' . $dbTable . '` (' . $columns . ') VALUES (' . $values . ')';
-
-echo $sqlquery;
+$sqlquery = "INSERT INTO `" . $dbTable . "` (" . $columns . ") VALUES (" . $values . ")";
 
 // SQL-Query ausführen und überprüfen
 if (!mysqli_query($link, $sqlquery)) {
-	echo date('H:i:s') . ' MySQL Error: ' . $query . mysqli_error($link);
+	echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($link);
 	exit();
 } else {
-	echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
+    echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
+    header("Location: index.php");
 	exit();
 }
 ?>
