@@ -1,7 +1,7 @@
 <?php
 return array(
     // Servername oder IP-Addresse
-    'dbServername' => '',
+    'dbHost' => '',
 
     // Benutzername der MySQL-Datenbank
     'dbUsername' => '',
