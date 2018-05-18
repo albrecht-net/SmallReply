@@ -1,12 +1,6 @@
 <?php
 // Konfiguration zuweisen
-$cfgFilename = 'config.php';
-
-// Auf vorhandene Konfiguration prüfen
-/* if (file_exists($cfgFilename)) {
-	echo date('H:i:s') . ' Konfiguration existiert bereits, Installation ist deaktiviert!';
-	exit();
-} */
+$configFilename = 'config.php';
 
 // Array Eingabe
 $dataSetup = array(
@@ -19,6 +13,25 @@ $dataInput = array(
 	'dbPassword' => $_POST['dbPassword'],
 	'dbName' => $_POST['dbName']
 );
+
+// Auf vorhandene Konfiguration prüfen
+if (in_array($dataSetup['step'], array(1, 2))) {
+    if (file_exists($configFilename)) {
+        echo date('H:i:s') . ' Konfiguration existiert bereits, Installation ist deaktiviert!';
+        exit();
+    }
+} elseif (in_array($dataSetup['step'], array(3,4))) {
+    if (!file_exists($configFilename)) {
+        echo date('H:i:s') . ' Keine config.php!';
+        exit();
+    }
+    include_once($configFilename);
+    // Prüfen ob Benutzertabelle leer
+    if (mysqli_query($link, "SELECT COUNT(*) > 0 AS 'userAviable' FROM `users` LIMIT 1")) {
+        echo date('H:i:s') . ' Setup wurde bereits ausgeführt, Installation ist deaktiviert!';
+        exit();
+    }
+}
 
 // HTML Header
 ?>
@@ -116,7 +129,9 @@ switch ($dataSetup['step']) {
 			// Eingabewerte in Config.php schreiben
 			file_put_contents('config.php', $dataSetup['configTemplate']);
 		}
-		break;
+        break;
+    case (3): // Tabellen erstellen
+    case (4): // Initial Benutzer erstellen
 }
 
 // HTML Footer
