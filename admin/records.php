@@ -56,7 +56,7 @@ if (!include_once 'includes/loginSessionCheck.inc.php') {
     
 	<?php
 		// Mit der Datenbank verbinden
-		include_once '../../../smallreply/includes/dbh.php';
+		include_once '../config.php';
 
 		// Variablen zuweisen
 		$dbTable = 'smallreply';
