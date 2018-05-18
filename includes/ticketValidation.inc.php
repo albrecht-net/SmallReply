@@ -1,6 +1,6 @@
 <?php
 // Mit der Datenbank verbinden
-include_once '../../dbh.php';
+include_once 'config.php';
 
 // Variablen zuweisen
 $dbTable = 'smallreply';
