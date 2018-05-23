@@ -1,6 +1,6 @@
 <?php
-// Konfiguration zuweisen
-$configFilename = 'config.php';
+// Konfiguration Pfad zuweisen
+$configFilePath = 'config.php';
 
 // Array Eingabe
 $dataSetup = array(
@@ -16,17 +16,17 @@ $dataInput = array(
 
 // Auf vorhandene Konfiguration prüfen
 if (in_array($dataSetup['step'], array(1, 2))) {
-    if (file_exists($configFilename)) {
+    if (file_exists($configFilePath)) {
         echo date('H:i:s') . ' Konfiguration existiert bereits, Installation ist deaktiviert!';
         exit();
     }
 } elseif (in_array($dataSetup['step'], array(3,4))) {
-    if (!file_exists($configFilename)) {
+    if (!file_exists($configFilePath)) {
         echo date('H:i:s') . ' Keine config.php!';
         exit();
     }
     // Konfiguration einbinden
-    include_once($configFilename);
+    include_once($configFilePath);
     // Prüfen ob Benutzertabelle leer
     if (mysqli_query($link, "SELECT COUNT(*) > 0 AS 'userAviable' FROM `users` LIMIT 1")) {
         echo date('H:i:s') . ' Setup wurde bereits ausgeführt, Installation ist deaktiviert!';
