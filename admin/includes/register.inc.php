@@ -1,7 +1,4 @@
 <?php
-// Mit der Datenbank verbinden
-include_once '../config.php';
-
 // Variablen zuweisen
 $dbTable = 'users';
 

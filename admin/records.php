@@ -1,4 +1,7 @@
 <?php
+// Konfiguration einbinden
+require_once('../config.php');
+
 // Prüfen ob Benutzer angemeldet
 if (!include_once 'includes/loginSessionCheck.inc.php') {
 	echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
