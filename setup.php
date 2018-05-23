@@ -7,12 +7,6 @@ $dataSetup = array(
     'step' => $_GET['step'],
     'configTemplate' => file('configSample.php')
 );
-$dataInput = array(
-    'dbHost' => $_POST['dbHost'],
-    'dbUsername' => $_POST['dbUsername'],
-    'dbPassword' => $_POST['dbPassword'],
-    'dbName' => $_POST['dbName']
-);
 
 // Auf vorhandene Konfiguration prüfen
 if (in_array($dataSetup['step'], array(1, 2))) {
@@ -97,6 +91,13 @@ switch ($dataSetup['step']) {
         <?php
         break;
     case (2): // Datenbankverbindung überprüfen
+        $dataInput = array(
+            'dbHost' => $_POST['dbHost'],
+            'dbUsername' => $_POST['dbUsername'],
+            'dbPassword' => $_POST['dbPassword'],
+            'dbName' => $_POST['dbName']
+        );
+
         // Mit der Datenbank verbinden
         $tempLink = mysqli_connect($dataInput['dbHost'], $dataInput['dbUsername'], $dataInput['dbPassword'], $dataInput['dbName']);
 
@@ -170,6 +171,8 @@ switch ($dataSetup['step']) {
         <?php
         break;
     case (5): // Initial Benutzer anlegen
+        include '/admin/includes/register.inc.php';
+        break;
 }
 
 // HTML Footer
