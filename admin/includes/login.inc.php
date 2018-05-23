@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 // Mit der Datenbank verbinden
 include_once '../../../dbh.php';
 
