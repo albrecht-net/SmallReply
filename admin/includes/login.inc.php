@@ -4,13 +4,13 @@ $dbTable = 'users';
 
 // Array Eingabe
 $dataInput = array(
-	'username' => mysqli_real_escape_string($link, $_POST['username']),
+	'username' => mysqli_real_escape_string($config['link'], $_POST['username']),
 	'password' => $_POST['password']
 );
 
 // SQL-Query bereitstellen
 $sqlquery = "SELECT `username`, `password`, `uid` FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
-$result = mysqli_query($link, $sqlquery);
+$result = mysqli_query($config['link'], $sqlquery);
 
 // Benutzername abfragen
 if (mysqli_num_rows($result) == 0) {

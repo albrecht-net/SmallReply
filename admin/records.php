@@ -66,7 +66,7 @@ if (!include_once 'includes/loginSessionCheck.inc.php') {
 
 		// SQL-Query bereitstellen
 		$sqlquery = "SELECT * FROM `" . $dbTable . "`";
-		$result = mysqli_query($link, $sqlquery);
+		$result = mysqli_query($config['link'], $sqlquery);
 
 		// Prüfen ob Datensätze vorhanden
 		if (mysqli_num_rows($result) < 1) {

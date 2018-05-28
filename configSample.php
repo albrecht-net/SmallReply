@@ -1,5 +1,5 @@
 <?php
-$config = array(
+$data = array(
     // Servername oder IP-Addresse
     'dbHost' => '',
 
@@ -14,12 +14,15 @@ $config = array(
 );
 
 // Datenbankverbindung
-$link = mysqli_connect($config['dbHost'], $config['dbUsername'], $config['dbPassword'], $config['dbName']);
+$config['link'] = mysqli_connect($data['dbHost'], $data['dbUsername'], $data['dbPassword'], $data['dbName']);
 
 // Verbindung überprüfen
-if (!$link) {
+if (!$config['link']) {
     exit('Connect Error: ' . mysqli_connect_error());
 }
 
-return $link;
+// Setup Status
+$config['setupActive'] = true;
+
+return $config;
 ?>

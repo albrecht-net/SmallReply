@@ -4,10 +4,10 @@ $dbTable = 'users';
 
 // Array Eingabe
 $dataInput = array(
-	'username' => mysqli_real_escape_string($link, $_POST['username']),
-	'firstname' => mysqli_real_escape_string($link, $_POST['firstname']),
-	'lastname' => mysqli_real_escape_string($link, $_POST['lastname']),
-	'email' => mysqli_real_escape_string($link, $_POST['email']),
+	'username' => mysqli_real_escape_string($config['link'], $_POST['username']),
+	'firstname' => mysqli_real_escape_string($config['link'], $_POST['firstname']),
+	'lastname' => mysqli_real_escape_string($config['link'], $_POST['lastname']),
+	'email' => mysqli_real_escape_string($config['link'], $_POST['email']),
 	'password' => $_POST['password'],
 	'passwordRepeat' => $_POST['passwordRepeat']
 );
@@ -18,7 +18,7 @@ $dataFunctions = array(
 // Eingabe-Regeln
 // Benutzername überprüfen, Benutzername muss einmalig sein
 $sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
-if (!mysqli_num_rows(mysqli_query($link, $sqlquery)) == 0) {
+if (!mysqli_num_rows(mysqli_query($config['link'], $sqlquery)) == 0) {
 	echo date('H:i:s') . ' Der Benutzername: ' . $dataInput['ticket'] . ' ist bereits vergeben.';
 	// exit();
 }
@@ -60,8 +60,8 @@ $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctio
 $sqlquery = "INSERT INTO `" . $dbTable . "` (" . $columns . ") VALUES (" . $values . ")";
 
 // SQL-Query ausführen und überprüfen
-if (!mysqli_query($link, $sqlquery)) {
-	echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($link);
+if (!mysqli_query($config['link'], $sqlquery)) {
+	echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($config['link']);
 	exit();
 } else {
     echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';
