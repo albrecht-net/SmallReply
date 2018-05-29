@@ -1,31 +1,26 @@
 <?php
-// Konfiguration Pfad zuweisen
-$configFilePath = 'config.php';
-
 // Array Eingabe
 $dataSetup = array(
     'step' => $_GET['step'],
-    'configTemplate' => file('configSample.php')
+    'configTemplate' => file('configSample.php'),
+    'configFile' => 'config.php'
 );
 
 // Auf vorhandene Konfiguration prüfen
-if (in_array($dataSetup['step'], array(1, 2))) {
-    if (file_exists($configFilePath)) {
+if (file_exists($dataSetup['configFile'])) {
+    // Konfiguration einbinden
+    include_once($dataSetup['configFile']);
+
+    if ($config['setupActive'] !== true) {
         echo date('H:i:s') . ' Konfiguration existiert bereits, Installation ist deaktiviert!';
         exit();
     }
-} elseif (in_array($dataSetup['step'], array(3,4))) {
-    if (!file_exists($configFilePath)) {
-        echo date('H:i:s') . ' Keine config.php!';
-        exit();
+
+    if (in_array($dataSetup['step'], array(0, 1, 2))) {
+        $dataSetup['step'] = 3;
     }
-    // Konfiguration einbinden
-    include_once($configFilePath);
-    // Prüfen ob Benutzertabelle leer
-    if (mysqli_query($link, "SELECT COUNT(*) > 0 AS 'userAviable' FROM `users` LIMIT 1")) {
-        echo date('H:i:s') . ' Setup wurde bereits ausgeführt, Installation ist deaktiviert!';
-        exit();
-    }
+} elseif (in_array($dataSetup['step'], array(3, 4))) {
+    $dataSetup['step'] = 0;
 }
 
 // HTML Header
