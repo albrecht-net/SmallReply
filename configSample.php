@@ -21,6 +21,9 @@ if (!$config['link']) {
     exit('Connect Error: ' . mysqli_connect_error());
 }
 
+// Datenbankname weitergeben
+$config['dbName'] = $data['dbName'];
+
 // Setup Status
 $config['setupActive'] = true;
 
