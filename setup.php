@@ -86,7 +86,7 @@ switch ($dataSetup['step']) {
         <?php
         break;
     case (2): // Datenbankverbindung überprüfen
-        $dataInput = array(
+        $dataSetup['input'] = array(
             'dbHost' => $_POST['dbHost'],
             'dbUsername' => $_POST['dbUsername'],
             'dbPassword' => $_POST['dbPassword'],
@@ -94,13 +94,13 @@ switch ($dataSetup['step']) {
         );
 
         // Mit der Datenbank verbinden
-        $tempLink = mysqli_connect($dataInput['dbHost'], $dataInput['dbUsername'], $dataInput['dbPassword'], $dataInput['dbName']);
+        $tempLink = mysqli_connect($dataSetup['input']['dbHost'], $dataSetup['input']['dbUsername'], $dataSetup['input']['dbPassword'], $dataSetup['input']['dbName']);
 
         // Verbindung überprüfen
         if (!$tempLink) {
             ?>
             <h1>Fehler beim Aufbau einer Datenbankverbindung</h1>
-            <p>Das bedeutet, dass der eingegebene Benutzername oder das Passwort nicht korrekt ist. Möglicherweise kann auch der Datenbankserver auf <code><?php echo $dataInput['dbHost'] ?></code> nicht erreicht werden.</p>
+            <p>Das bedeutet, dass der eingegebene Benutzername oder das Passwort nicht korrekt ist. Möglicherweise kann auch der Datenbankserver auf <code><?php echo $dataSetup['input']['dbHost'] ?></code> nicht erreicht werden.</p>
             <ul>
                 <li>Sind Benutzername und Passwort korrekt?</li>
                 <li>Ist der Datenbankserver unter dem eingegebenen Hostnamen oder IP-Addresse erreichbar?</li>
@@ -112,7 +112,7 @@ switch ($dataSetup['step']) {
         } else {
 
             // Eingabewerte zur Konfigurationsvorlage hinzufügen
-            foreach ($dataInput as $key => $value) {
+            foreach ($dataSetup['input'] as $key => $value) {
                 $search = "'" . $key . "' => ''";
                 $replace = "'" . $key . "' => '" . $value . "'";
                 $dataSetup['configTemplate'] = str_replace($search, $replace, $dataSetup['configTemplate']);
