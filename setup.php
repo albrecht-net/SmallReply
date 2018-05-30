@@ -136,7 +136,7 @@ switch ($dataSetup['step']) {
         break;
     case (3): // Prüfen auf vorhandene Tabellen
         // SQL-Query bereitstellen
-        $sqlquery = "SHOW TABLES WHERE `Tables_in_" . $config['dnName'] . "` REGEXP '" . implode('|', $dataSetup['tables']) . "'";
+        $sqlquery = "SHOW TABLES WHERE `Tables_in_" . $config['dbName'] . "` REGEXP '" . implode('|', $dataSetup['tables']) . "'";
         $result = mysqli_query($config['link'], $sqlquery);
         if (mysqli_num_rows($result) > 0) {
             while($row = mysqli_fetch_row($result)) {
@@ -144,7 +144,7 @@ switch ($dataSetup['step']) {
             }
             ?>
             <h1>Es wurden Tabellen gefunden</h1>
-            <p>In der von Ihnen eingegebenen Datenenbank <code><?php $config['dbName']; ?></code> wurden folgende Tabellen für Smallreply gefunden: <code><?php implode(', ', $dataSetup['presentTables']) ?></code>.</p>
+            <p>In der von Ihnen eingegebenen Datenenbank <code><?php echo $config['dbName']; ?></code> wurden folgende Tabellen für Smallreply gefunden: <code><?php echo implode(', ', $dataSetup['presentTables']) ?></code></p>
             <p>Beinhalten diese Tabellen Daten für Smallreply welche importiert werden sollen, kann der nächste Schritt <a href="setup.php?step=5">übersprungen</a> werden. Damit Smallreply ohne Probleme funktionieren kann, muss sichergestellt werden, dass die benötigten Tabellen eine korrekte Datenstruktur verfügen!</p>
             <?php
             break;
