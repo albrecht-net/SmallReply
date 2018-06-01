@@ -58,11 +58,8 @@ if (!include_once 'includes/loginSessionCheck.inc.php') {
 		// Mit der Datenbank verbinden
 		include_once '../../../smallreply/includes/dbh.php';
 
-		// Variablen zuweisen
-		$dbTable = 'smallreply';
-
 		// SQL-Query bereitstellen
-		$sqlquery = "SELECT * FROM `" . $dbTable . "`";
+		$sqlquery = "SELECT * FROM `smallreply`";
 		$result = mysqli_query($link, $sqlquery);
 
 		// Prüfen ob Datensätze vorhanden

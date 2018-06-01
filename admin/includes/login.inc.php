@@ -4,9 +4,6 @@ session_start();
 // Mit der Datenbank verbinden
 include_once '../../../dbh.php';
 
-// Variablen zuweisen
-$dbTable = 'users';
-
 // Array Eingabe
 $dataInput = array(
 	'username' => mysqli_real_escape_string($link, $_POST['username']),
@@ -14,7 +11,7 @@ $dataInput = array(
 );
 
 // SQL-Query bereitstellen
-$sqlquery = "SELECT `username`, `password`, `uid` FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
+$sqlquery = "SELECT `username`, `password`, `uid` FROM `users` WHERE `username` = '" . $dataInput['username'] . "'";
 $result = mysqli_query($link, $sqlquery);
 
 // Benutzername abfragen

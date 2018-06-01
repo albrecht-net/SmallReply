@@ -2,16 +2,13 @@
 // Mit der Datenbank verbinden
 include_once '../../dbh.php';
 
-// Variablen zuweisen
-$dbTable = 'smallreply';
-
 // Array Eingabe
 $dataValidation = array(
 	'ticket' => mysqli_real_escape_string($link, $_GET['ticket'])
 );
 
 // SQL-Query bereitstellen (Für Ticket Validierung und Eingabeformular)
-$sqlquery = "SELECT CURDATE() <= `dateExpire` AS 'dateValid', `completed`, `title`, `description` FROM `" .  $dbTable . "` WHERE `ticket` = '" . $dataValidation['ticket'] . "'";
+$sqlquery = "SELECT CURDATE() <= `dateExpire` AS 'dateValid', `completed`, `title`, `description` FROM `smallreply` WHERE `ticket` = '" . $dataValidation['ticket'] . "'";
 $result = mysqli_query($link, $sqlquery);
 
 // Ticket validieren

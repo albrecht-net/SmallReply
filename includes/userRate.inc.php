@@ -2,9 +2,6 @@
 // Mit der Datenbank verbinden
 include_once '../../dbh.php';
 
-// Variablen zuweisen
-$dbTable = 'smallreply';
-
 // Array Eingabe
 $dataInput = array(
     'rateValue' => filter_var($_POST['rateValue'], FILTER_SANITIZE_NUMBER_INT),
@@ -28,7 +25,7 @@ foreach ($dataFunction as $column => $value) {
     $set[] = "`" . $column . "` = " . $value;
 }
 
-$sqlquery = "UPDATE `" . $dbTable . "` SET " . implode(", ", $set) . " WHERE `" . $dbTable . "`.`ticket` = '" . $dataValidation['ticket'] . "'";
+$sqlquery = "UPDATE `smallreply` SET " . implode(", ", $set) . " WHERE `smallreply`.`ticket` = '" . $dataValidation['ticket'] . "'";
 
 // SQL-Query ausführen und überprüfen
 if (!mysqli_query($link, $sqlquery)) {
