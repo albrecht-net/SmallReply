@@ -1,15 +1,13 @@
 <?php
-// Mit der Datenbank verbinden
-include_once '../../../dbh.php';
 
 // Array Eingabe
 $dataInput = array(
-	'ticket' => mysqli_real_escape_string($link, $_POST['ticket']),
-	'firstname' => mysqli_real_escape_string($link, $_POST['firstname']),
-	'lastname' => mysqli_real_escape_string($link, $_POST['lastname']),
-	'email' => mysqli_real_escape_string($link, $_POST['email']),
-	'title' => mysqli_real_escape_string($link, $_POST['title']),
-	'description' => mysqli_real_escape_string($link, $_POST['description'])
+	'ticket' => mysqli_real_escape_string($config['link'], $_POST['ticket']),
+	'firstname' => mysqli_real_escape_string($config['link'], $_POST['firstname']),
+	'lastname' => mysqli_real_escape_string($config['link'], $_POST['lastname']),
+	'email' => mysqli_real_escape_string($config['link'], $_POST['email']),
+	'title' => mysqli_real_escape_string($config['link'], $_POST['title']),
+	'description' => mysqli_real_escape_string($config['link'], $_POST['description'])
 );
 $dataFunctions = array(
 	'dateCreate' => 'NOW()',
@@ -20,7 +18,7 @@ $dataFunctions = array(
 // Ticket überprüfen, Ticket muss einmalig sein
 $sqlquery = "SELECT * FROM `smallreply` WHERE `ticket` = '" . $dataInput['ticket'] . "'";
 
-if (!mysqli_num_rows(mysqli_query($link, $sqlquery)) == 0) {
+if (!mysqli_num_rows(mysqli_query($config['link'], $sqlquery)) == 0) {
 	echo date('H:i:s') . ' Es ist bereits ein Eintrag mit der Ticket-Nummer: ' . $dataInput['ticket'] . ' vorhanden.';
 	// exit();
 }
@@ -56,8 +54,8 @@ $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctio
 $sqlquery = "INSERT INTO `smallreply` (" . $columns . ") VALUES (" . $values . ")";
 
 // SQL-Query ausführen und überprüfen
-if (!mysqli_query($link, $sqlquery)) {
-	echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($link);
+if (!mysqli_query($config['link'], $sqlquery)) {
+	echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($config['link']);
 	exit();
 } else {
     echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';

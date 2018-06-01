@@ -1,18 +1,13 @@
 <?php
-session_start();
-
-// Mit der Datenbank verbinden
-include_once '../../../dbh.php';
-
 // Array Eingabe
 $dataInput = array(
-	'username' => mysqli_real_escape_string($link, $_POST['username']),
+	'username' => mysqli_real_escape_string($config['link'], $_POST['username']),
 	'password' => $_POST['password']
 );
 
 // SQL-Query bereitstellen
 $sqlquery = "SELECT `username`, `password`, `uid` FROM `users` WHERE `username` = '" . $dataInput['username'] . "'";
-$result = mysqli_query($link, $sqlquery);
+$result = mysqli_query($config['link'], $sqlquery);
 
 // Benutzername abfragen
 if (mysqli_num_rows($result) == 0) {

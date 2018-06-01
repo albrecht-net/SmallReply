@@ -1,11 +1,11 @@
 <?php
 // Mit der Datenbank verbinden
-include_once '../../dbh.php';
+include_once 'config.php';
 
 // Array Eingabe
 $dataInput = array(
     'rateValue' => filter_var($_POST['rateValue'], FILTER_SANITIZE_NUMBER_INT),
-    'rateComment' => mysqli_real_escape_string($link, $_POST['rateComment']),
+    'rateComment' => mysqli_real_escape_string($config['link'], $_POST['rateComment']),
     'completed' => 1
 );
 $dataFunction = array(
@@ -28,8 +28,8 @@ foreach ($dataFunction as $column => $value) {
 $sqlquery = "UPDATE `smallreply` SET " . implode(", ", $set) . " WHERE `smallreply`.`ticket` = '" . $dataValidation['ticket'] . "'";
 
 // SQL-Query ausführen und überprüfen
-if (!mysqli_query($link, $sqlquery)) {
-    echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($link);
+if (!mysqli_query($config['link'], $sqlquery)) {
+    echo date('H:i:s') . ' MySQL Error: ' . mysqli_error($config['link']);
     exit();
 } else {
     echo date('H:i:s') . '  Eintrag erfolgreich gespeichert <br>';

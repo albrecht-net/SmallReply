@@ -1,4 +1,7 @@
 <?php
+// Konfiguration einbinden
+require_once('../config.php');
+
 // Prüfen ob Benutzer angemeldet
 if (!include_once 'includes/loginSessionCheck.inc.php') {
 	echo date('H:i:s') . ' Datei einbinden fehlgeschlagen';
@@ -56,11 +59,11 @@ if (!include_once 'includes/loginSessionCheck.inc.php') {
     
 	<?php
 		// Mit der Datenbank verbinden
-		include_once '../../../smallreply/includes/dbh.php';
+		include_once '../config.php';
 
 		// SQL-Query bereitstellen
 		$sqlquery = "SELECT * FROM `smallreply`";
-		$result = mysqli_query($link, $sqlquery);
+		$result = mysqli_query($config['link'], $sqlquery);
 
 		// Prüfen ob Datensätze vorhanden
 		if (mysqli_num_rows($result) < 1) {
