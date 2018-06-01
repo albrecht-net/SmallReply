@@ -134,7 +134,7 @@ switch ($dataSetup['step']) {
             <?php
         }
         break;
-    case (3): // Prüfen auf vorhandene Tabellen
+    case (5): // Prüfen auf vorhandene Tabellen
         // SQL-Query bereitstellen
         $sqlquery = "SHOW TABLES WHERE `Tables_in_" . $config['dbName'] . "` REGEXP '" . implode('|', $dataSetup['tables']) . "'";
         $result = mysqli_query($config['link'], $sqlquery);
@@ -151,7 +151,8 @@ switch ($dataSetup['step']) {
         } else {
             continue;
         }
-    case (4): // Initial Benutzerdaten eingeben
+    case (6): // Tabellen erstellen
+    case (10): // Initial Benutzerdaten eingeben
         ?>
         <form action="setup.php?step=5" method="POST">
             <div>
@@ -185,7 +186,7 @@ switch ($dataSetup['step']) {
         </form>
         <?php
         break;
-    case (5): // Initial Benutzer anlegen
+    case (11): // Initial Benutzer anlegen
         include '/admin/includes/register.inc.php';
         break;
 }
