@@ -1,7 +1,4 @@
 <?php
-// Variablen zuweisen
-$dbTable = 'users';
-
 // Array Eingabe
 $dataInput = array(
 	'username' => mysqli_real_escape_string($config['link'], $_POST['username']),
@@ -9,7 +6,7 @@ $dataInput = array(
 );
 
 // SQL-Query bereitstellen
-$sqlquery = "SELECT `username`, `password`, `uid` FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
+$sqlquery = "SELECT `username`, `password`, `uid` FROM `users` WHERE `username` = '" . $dataInput['username'] . "'";
 $result = mysqli_query($config['link'], $sqlquery);
 
 // Benutzername abfragen

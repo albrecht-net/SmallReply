@@ -1,6 +1,4 @@
 <?php
-// Variablen zuweisen
-$dbTable = 'smallreply';
 
 // Array Eingabe
 $dataInput = array(
@@ -18,7 +16,7 @@ $dataFunctions = array(
 
 // Eingabe-Regeln
 // Ticket überprüfen, Ticket muss einmalig sein
-$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `ticket` = '" . $dataInput['ticket'] . "'";
+$sqlquery = "SELECT * FROM `smallreply` WHERE `ticket` = '" . $dataInput['ticket'] . "'";
 
 if (!mysqli_num_rows(mysqli_query($config['link'], $sqlquery)) == 0) {
 	echo date('H:i:s') . ' Es ist bereits ein Eintrag mit der Ticket-Nummer: ' . $dataInput['ticket'] . ' vorhanden.';
@@ -53,7 +51,7 @@ if ($dataFunctions['dateExpire'] == 0) {
 // SQL-Query bereitstellen
 $columns = "`" . implode("`, `", array_keys($dataInput)) . "`, `" . implode("`, `", array_keys($dataFunctions)) . "`";
 $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctions);
-$sqlquery = "INSERT INTO `" . $dbTable . "` (" . $columns . ") VALUES (" . $values . ")";
+$sqlquery = "INSERT INTO `smallreply` (" . $columns . ") VALUES (" . $values . ")";
 
 // SQL-Query ausführen und überprüfen
 if (!mysqli_query($config['link'], $sqlquery)) {

@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-// Variablen zuweisen
-$dbTable = 'users';
-
 // Array Sessiondata
 $dataSession = array(
 	'uid' => mysqli_real_escape_string($config['link'], $_SESSION['uid']),
@@ -24,7 +21,7 @@ if (empty($dataSession['uid']) || empty($dataSession['username'])) {
 } elseif (isset($dataSession['uid']) && isset($dataSession['username'])) {
 
 	// SQL-Query bereitstellen
-	$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `uid` = '" . $dataSession['uid'] . "' AND `username` = '" . $dataSession['username'] . "'";
+	$sqlquery = "SELECT * FROM `users` WHERE `uid` = '" . $dataSession['uid'] . "' AND `username` = '" . $dataSession['username'] . "'";
 
 	// Prüft ob Session mit Datenbank übereinstimmt (Wenn 1 Resultat: Benutzer vorhanden und korrekt abgeglichen, Session wird nicht zurückgesetzt)
 	if (mysqli_num_rows(mysqli_query($config['link'], $sqlquery)) != 1) {

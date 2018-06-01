@@ -1,6 +1,4 @@
 <?php
-// Variablen zuweisen
-$dbTable = 'users';
 
 // Array Eingabe
 $dataInput = array(
@@ -17,7 +15,7 @@ $dataFunctions = array(
 
 // Eingabe-Regeln
 // Benutzername überprüfen, Benutzername muss einmalig sein
-$sqlquery = "SELECT * FROM `" . $dbTable . "` WHERE `username` = '" . $dataInput['username'] . "'";
+$sqlquery = "SELECT * FROM `users` WHERE `username` = '" . $dataInput['username'] . "'";
 if (!mysqli_num_rows(mysqli_query($config['link'], $sqlquery)) == 0) {
 	echo date('H:i:s') . ' Der Benutzername: ' . $dataInput['ticket'] . ' ist bereits vergeben.';
 	// exit();
@@ -57,7 +55,7 @@ $dataInput['uid'] = uniqid();
 // SQL-Query bereitstellen
 $columns = "`" . implode("`, `", array_keys($dataInput)) . "`, `" . implode("`, `", array_keys($dataFunctions)) . "`";
 $values = "'" . implode("', '", $dataInput) . "', " . implode(", ", $dataFunctions);
-$sqlquery = "INSERT INTO `" . $dbTable . "` (" . $columns . ") VALUES (" . $values . ")";
+$sqlquery = "INSERT INTO `users` (" . $columns . ") VALUES (" . $values . ")";
 
 // SQL-Query ausführen und überprüfen
 if (!mysqli_query($config['link'], $sqlquery)) {
